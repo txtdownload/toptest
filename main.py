@@ -53,7 +53,6 @@ async def account_login(bot: Client, m: Message):
 
 @bot.on_message(
     filters.command(["cancel"]) & ~filters.edited)
-)
 async def cancel(_, m):
     editable = await m.reply_text("Canceling All process Plz wait")
     global cancel
