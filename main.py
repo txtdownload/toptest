@@ -39,16 +39,9 @@ bot = Client("bot",
              bot_token=os.environ.get("BOT_TOKEN"),
              api_id=int(os.environ.get("API_ID")),
              api_hash=os.environ.get("API_HASH"))
-auth_users = [
-    int(chat) for chat in os.environ.get("AUTH_USERS").split(",") if chat != ''
-]
-sudo_users = auth_users
-sudo_groups = [
-    int(chat) for chat in os.environ.get("GROUPS").split(",") if chat != ''
-]
 
 @bot.on_message(
-    filters.command(["start"]) & ~filters.edited & (filters.chat(sudo_groups)))
+    filters.command(["start"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
     user = m.from_user.id if m.from_user is not None else None
     if user is not None and user not in sudo_users:
@@ -59,7 +52,7 @@ async def account_login(bot: Client, m: Message):
 
 
 @bot.on_message(
-    filters.command(["cancel"]) & ~filters.edited & (filters.chat(sudo_groups))
+    filters.command(["cancel"]) & ~filters.edited)
 )
 async def cancel(_, m):
     editable = await m.reply_text("Canceling All process Plz wait")
@@ -70,14 +63,14 @@ async def cancel(_, m):
 
 
 @bot.on_message(
-    filters.command("restart") & ~filters.edited & (filters.chat(sudo_groups)))
+    filters.command("restart") & ~filters.edited)
 async def restart_handler(_, m):
     await m.reply_text("Restarted!", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 @bot.on_message(
-    filters.command(["pyro"]) & ~filters.edited & (filters.chat(sudo_groups)))
+    filters.command(["pyro"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
     user = m.from_user.id if m.from_user is not None else None
     if user is not None and user not in sudo_users:
@@ -560,7 +553,7 @@ async def adda_pdf(bot: Client, m: Message):
 
 
 @bot.on_message(
-    filters.command(["jw"]) & ~filters.edited & (filters.chat(sudo_groups)))
+    filters.command(["jw"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text("Send txt file**")
     input: Message = await bot.listen(editable.chat.id)
