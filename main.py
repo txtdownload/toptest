@@ -43,7 +43,7 @@ bot = Client("bot",
 @bot.on_message(
     filters.command(["start"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text("Hi\nPress /pyro")
+    editable = await m.reply_text("Hello im txt file downloader\nPress /pyro to download links listed in a txt file in the format **Name:link**\n\nBot made by BATMAN")
 
 
 @bot.on_message(
@@ -66,7 +66,7 @@ async def restart_handler(_, m):
 @bot.on_message(
     filters.command(["pyro"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text("Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : NooB DRAGO**\nLanguage** : Python**\nFramework** : 🔥 Pyrogram\n\nSend **TXT** File {Name : Link}")
+    editable = await m.reply_text("Send txt file")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
@@ -128,13 +128,7 @@ async def account_login(bot: Client, m: Message):
         for i in range(arg, len(links)):
 
             url = links[i][1]
-            name1 = links[i][0].replace("\t", "").replace(":", "").replace(
-                "/",
-                "").replace("+", "").replace("#", "").replace("|", "").replace(
-                    "@", "").replace("*",
-                                     "").replace("download",
-                                                 ".pdf").replace(".",
-                                                                 "").strip()
+            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/","").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*","").replace("download",".pdf").replace(".","").strip()
 
             if raw_text2 == "144":
 
@@ -413,13 +407,14 @@ async def account_login(bot: Client, m: Message):
     )
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
+    
+    editable2 = await m.reply_text("**Enter Title**")
+    input5: Message = await bot.listen(editable.chat.id)
+    raw_text5 = input5.text 
 
     
-    raw_text5 = input.document.file_name.replace(".txt", "")
-    await input.delete(True)
-    editable4 = await m.reply_text(
-        "Now send the **Thumb url**\nEg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**"
-    )
+    
+    editable4 = await m.reply_text("Now send the **Thumb url**\nEg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
 
